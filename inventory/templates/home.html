@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Início{% endblock %}
+{% block content %}
+<h1>Bem-vindo ao Sistema de Estoque</h1>
+<p>Este é um sistema simples para gerenciamento de estoque de produtos.</p>
+
+<div class="row mt-4">
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Produtos</h5>
+        <p class="card-text">Gerencie o cadastro de produtos.</p>
+        <a href="{% url 'lista_produtos' %}" class="btn btn-primary">Ver Produtos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Movimentações</h5>
+        <p class="card-text">Registre entrada e saída de produtos.</p>
+        <a href="{% url 'historico_movimentacoes' %}" class="btn btn-primary">Ver Histórico</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Estatísticas</h5>
+        <p class="card-text">Visualize relatórios e estatísticas.</p>
+        <a href="{% url 'registrar_movimentacao' %}" class="btn btn-primary">Nova Movimentação</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

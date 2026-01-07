@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Sistema de Estoque{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{% url 'home' %}">Estoque</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'lista_produtos' %}">Produtos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'historico_movimentacoes' %}"
+            >Movimentações</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'registrar_movimentacao' %}"
+            >Registrar Movimentação</a
+          >
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <form
+            method="post"
+            action="{% url 'logout' %}"
+            style="display: inline"
+          >
+            {% csrf_token %}
+            <button class="btn btn-link nav-link" style="padding: 0">
+              Sair
+            </button>
+          </form>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+      <span class="navbar-text">
+        {% if user.is_authenticated %}Bem-vindo, {{
+        user.get_full_name|default:user.username }}{% endif %}
+      </span>
+    </nav>
+
+    <main class="container mt-4">{% block content %}{% endblock %}</main>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+        <span class="text-muted">Sistema de Estoque &copy; 2025</span>
+      </div>
+    </footer>
+  </body>
+</html>
